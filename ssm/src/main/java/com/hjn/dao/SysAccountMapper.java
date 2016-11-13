@@ -50,4 +50,6 @@ public interface SysAccountMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(SysAccount record);
+    
+    public SysAccount selectByLoginName(String loginName);
 }
