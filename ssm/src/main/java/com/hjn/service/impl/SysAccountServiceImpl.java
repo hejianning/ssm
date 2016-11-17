@@ -1,13 +1,17 @@
 package com.hjn.service.impl;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hjn.dao.SysAccountMapper;
 import com.hjn.entity.SysAccount;
 import com.hjn.exception.CustomException;
@@ -16,8 +20,10 @@ import com.hjn.util.Bytes;
 import com.hjn.util.Digests;
 
 @Service
-@Transactional
+//@Transactional
 public class SysAccountServiceImpl implements SysAccountService {
+	
+	private static final Logger log4j = Logger.getLogger(SysAccountServiceImpl.class);
 
 	@Resource
 	private SysAccountMapper sysAccountDao;
@@ -74,6 +80,15 @@ public class SysAccountServiceImpl implements SysAccountService {
 		
 	}
 	
+	@Override
+	public PageInfo<SysAccount> selectByPaging(Integer pageNum, Integer paegSize) {
+		PageHelper.startPage(pageNum, paegSize);
+		List<SysAccount> list = sysAccountDao.selectAll();
+		PageInfo<SysAccount> pageInfo = new PageInfo<SysAccount>(list);
+		log4j.debug("list.size()	:"+list.size());
+		return pageInfo;
+	}
+	
 	private String getMd5FromString(String source){
 		byte[] bytePassword;
 		String md5Password = null;
@@ -85,5 +100,7 @@ public class SysAccountServiceImpl implements SysAccountService {
 		}
 		return md5Password;
 	}
+
+	
 
 }

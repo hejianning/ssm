@@ -1,5 +1,7 @@
 package com.hjn.dao;
 
+import java.util.List;
+
 import com.hjn.entity.SysAccount;
 
 public interface SysAccountMapper {
@@ -52,4 +54,6 @@ public interface SysAccountMapper {
     int updateByPrimaryKey(SysAccount record);
     
     public SysAccount selectByLoginName(String loginName);
+    
+    public List<SysAccount> selectAll();                            
 }

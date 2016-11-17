@@ -18,8 +18,8 @@
 	<br><br>
 	<div align="center">
 		<form action="${ctx }/admin/login" method="post">
-			登录名：<input type="text"><br>
-			密码：<input type="password"><br>
+			登录名：<input type="text" name="loginName"><br>
+			密码：<input type="password" name="password"><br>
 			<input type="submit" value="登陆">
 		</form>
 	</div>

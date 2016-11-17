@@ -19,7 +19,7 @@
 	<!-- 加载配置文件 -->
 	<context:property-placeholder location="classpath:application.properties"/>
 	<!-- 数据源，使用dbcp -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"/>
 		<property name="url" value="${jdbc.url}"/>
 		<property name="username" value="${jdbc.username}"/>
@@ -41,7 +41,7 @@
 		      <bean class="com.github.pagehelper.PageHelper">
 		        <property name="properties">
 		          <value>
-		            dialect=hsqldb
+		            dialect=mysql
 		          </value>
 		        </property>
 		      </bean>

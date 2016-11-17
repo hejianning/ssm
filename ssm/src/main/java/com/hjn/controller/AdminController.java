@@ -28,8 +28,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String loginName, String password) throws CustomException{
+		log4j.debug("loginName	:"+loginName);
+		log4j.debug("password	："+password);
 		sysAccountService.login(loginName, password);
-		return "user/list";
+		return "redirect:/user/list";
 	}
 	
 	@RequestMapping(value = "register", method = RequestMethod.GET)
@@ -40,6 +42,6 @@ public class AdminController {
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(SysAccount sysAccount){
 		sysAccountService.register(sysAccount);
-		return "login";
+		return "redirect:/admin/login";
 	}
 }
